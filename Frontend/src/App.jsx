@@ -1,6 +1,7 @@
 import React from 'react'
 import {createBrowserRouter, RouterProvider} from "react-router-dom"
 import User from './components/getUser/User'
+import Add from './components/addUser/Add'
 const App = () => {
   const route = createBrowserRouter([
     {
@@ -9,7 +10,7 @@ const App = () => {
     },
      {
       path:"/add",
-      element:"User add Page",
+      element:<Add/>,
     },
      {
       path:"/edit",
