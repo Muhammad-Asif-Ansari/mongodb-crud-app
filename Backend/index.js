@@ -1,5 +1,4 @@
 import express from "express";
-import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import "dotenv/config";
 import cors from "cors";
@@ -11,7 +10,13 @@ ConnectDatabase()
 const app = express();
 // app.use = (express.json())
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors(
+    ({
+  origin: "http://localhost:5173",  // sirf tumhari React app ko allow karega
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+})
+));
 
 
 const PORT = process.env.PORT || 5000;

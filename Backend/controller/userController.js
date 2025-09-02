@@ -2,6 +2,7 @@ import user from "../models/userModel.js";
 
 export const create = async (req, res) => {
     try {
+        
         const userData = new user(req.body);
 
         if (!userData) {
@@ -10,7 +11,7 @@ export const create = async (req, res) => {
         const saveData = await userData.save();
         res.status(200).json(saveData)
     } catch (error) {
-        res.status(500).json({ "error==>": error })
+        res.status(500).json({ "error==>": error.message})
     }
 }
 

@@ -2,6 +2,7 @@ import React from 'react'
 import {createBrowserRouter, RouterProvider} from "react-router-dom"
 import User from './components/getUser/User'
 import Add from './components/addUser/Add'
+import Edit from './components/updateUser/Edit'
 const App = () => {
   const route = createBrowserRouter([
     {
@@ -14,7 +15,7 @@ const App = () => {
     },
      {
       path:"/edit",
-      element:"Update User Page",
+      element:<Edit/>,
     },
      {
       path:"/delete",
