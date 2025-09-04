@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import "./user.css"
 import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import axios from 'axios';
 const User = () => {
     const [users, setUsers] = useState([])
@@ -23,6 +24,15 @@ const User = () => {
         }
         fetchData()
     }, [])
+    const deleteUser = (userId)=>{
+        axios.delete(`http://localhost:5000/api/deleteUser/${userId}`)
+        .then((response)=>{
+             setUsers((prevUser)=>prevUser.filter((user)=> user._id !== userId))
+            toast.success(response.data.message,{position:"top-right"})
+        })
+
+        .catch(error => console.log(error))
+        }
     return (
         <div className='userTable'>
             <Link to={"/add"} className='addButton'>Add User</Link>
@@ -45,7 +55,7 @@ const User = () => {
                                     <td>{user.email}</td>
 
                                     <td className='actionButton'>
-                                        <button>
+                                        <button onClick={()=>deleteUser(user._id)}>
                                             <FontAwesomeIcon icon={faTrash} /></button>
                                         <Link to={`/edit/${user._id}`}><FontAwesomeIcon icon={faPenToSquare} /></Link>
                                     </td>
