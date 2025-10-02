@@ -10,13 +10,25 @@ ConnectDatabase()
 const app = express();
 // app.use = (express.json())
 app.use(bodyParser.json());
-app.use(cors(
-    ({
-  origin: "http://localhost:5173",  // sirf tumhari React app ko allow karega
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://mongodb-crud-app-xzf9.vercel.app"
+];
+
+app.use(cors({
+  origin: function(origin, callback) {
+    // origin == undefined jab Postman ya browser me direct request ho
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
-})
-));
+}));
+
 
 
 const PORT = process.env.PORT || 5000;
