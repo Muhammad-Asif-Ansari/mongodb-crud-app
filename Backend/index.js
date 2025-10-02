@@ -21,9 +21,9 @@ app.use(cors(
 
 const PORT = process.env.PORT || 5000;
 
-// app.get("/",(req,res)=>{
-// res.status(200).send("api working Successfully")
-// })
+app.get("/",(req,res)=>{
+res.status(200).send("api working Successfully")
+})
 
 // app.use("/",(req,res)=>{
 // res.send("api working Successfully")
