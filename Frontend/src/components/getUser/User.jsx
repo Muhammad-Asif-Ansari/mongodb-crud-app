@@ -12,7 +12,7 @@ const User = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get("http://localhost:5000/api/getAll")
+                const response = await axios.get("/api/getAll")
                 // console.log(response.data)
                 setUsers(response.data.data)
 
@@ -25,7 +25,7 @@ const User = () => {
         fetchData()
     }, [])
     const deleteUser = (userId)=>{
-        axios.delete(`http://localhost:5000/api/deleteUser/${userId}`)
+        axios.delete(`/api/deleteUser/${userId}`)
         .then((response)=>{
              setUsers((prevUser)=>prevUser.filter((user)=> user._id !== userId))
             toast.success(response.data.message,{position:"top-right"})

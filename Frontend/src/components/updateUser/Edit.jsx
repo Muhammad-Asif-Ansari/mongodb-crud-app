@@ -22,7 +22,7 @@ const Edit = () => {
   }
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/getuser/${id}`)
+    axios.get(`/api/getuser/${id}`)
       .then(response => setUser(response.data)
       )
       .catch(error => console.log(error));
@@ -31,7 +31,7 @@ const Edit = () => {
 
   const submitForm = async (e) => {
     e.preventDefault()
-    await axios.put(`http://localhost:5000/api/updateuser/${id}`, user)
+    await axios.put(`/api/updateuser/${id}`, user)
       .then(response => toast.success(response.data.message, { position: "top-right" }))
     // .then(response => console.log(response.data.message))
     navigate("/")
